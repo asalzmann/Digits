@@ -3,6 +3,8 @@ import math
 
 class neuralNetwork(object):
 
+	'''X is weights, y is biases'''
+
 	def __init__(self):
 		#sizes of each layer
 		self.inputLayerSize = 784
@@ -22,10 +24,19 @@ class neuralNetwork(object):
 		'''returns the derivative of the sigmoid (the nabla)'''
 		return np.exp(-x)/ ((1+ np.exp(-x)) ** 2)
 
-	def costFunction(self, w, b):
+	def costFunction(self, X, y):
 		'''returns the cost function given an array of weights and biases'''
 		self.a = self.forward(w)
 		return  1/(2*n) * sum(y - self.a**2)
+
+	def costFunctionPrime(self, X, y):
+		# returns gradient
+		'''filters the outputs with sigmoid'''
+		self.a = self.forward(X)
+
+	
+
+
 
 	def forward(self, X):
 		'''X is the input to the neural network. a is the output with the current weights'''
@@ -34,6 +45,9 @@ class neuralNetwork(object):
 		self.z3 = np.dot(self.a2, self.w2)
 		a = self.sigmoid(self.z3)
 		return a 
+
+
+
 
 
 
